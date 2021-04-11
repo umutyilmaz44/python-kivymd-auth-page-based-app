@@ -1,0 +1,104 @@
+#:import PageDashbord pages.page_users.users
+
+#:import MDDropdownMenu kivymd.uix.menu.MDDropdownMenu
+
+<CustomToolbar>:
+    size_hint_y: None
+    height: root.theme_cls.standard_increment
+    padding: [root.theme_cls.horizontal_margins - dp(12), 0]
+    opposite_colors: True
+    elevation: 6
+    spacing: "12dp"
+    md_bg_color: self.theme_cls.primary_color
+
+    MDIconButton:
+        id: nav_button
+        icon: "menu"
+        pos_hint: {"center_y": .5}
+        opposite_colors: root.opposite_colors
+        theme_text_color: 'Custom'
+        text_color: root.specific_text_color
+        on_release: root.parent.parent.parent.parent.parent .ids.nav_drawer.set_state('toggle')
+
+    MDLabel:
+        text: app.app_title
+        pos_hint: {"center_y": .5}
+        size_hint_x: None
+        width: self.texture_size[0]
+        text_size: None, None
+        font_style: 'H6'
+        opposite_colors: root.opposite_colors
+        theme_text_color: 'Custom'
+        text_color: root.specific_text_color
+
+    Widget:
+
+    MDIconButton:
+        id: menu_button
+        icon: "dots-vertical"
+        pos_hint: {"center_y": .5}
+        opposite_colors: root.opposite_colors
+        theme_text_color: 'Custom'
+        text_color: root.specific_text_color
+        on_release: root.parent.parent.menu.open()
+
+<DialogTexField@MDTextField>
+    icon_type: "right"
+    size_hint: .8, None
+    pos_hint: {"center_x": .5}
+    write_tab: False
+    multiline: False
+    
+<UserInfo>:
+    orientation: "vertical"
+    spacing: "6dp"
+    size_hint_y: None
+    height: "185dp"
+
+    DialogTexField:
+        id: username        
+        icon_right: "account-circle-outline"
+        hint_text: "Username"  
+        required: True     
+    
+    DialogTexField:
+        id: fullname
+        icon_right: "account-badge-horizontal-outline"
+        hint_text: "Full Name"
+        required: True
+
+    DialogTexField:
+        id: password
+        password: True
+        icon_right: "textbox-password"
+        hint_text: "Password"
+    
+    MDDropDownItem:
+        id: user_role
+        adaptive_size: True
+        adaptive_width: True
+        size_hint: .8, None
+        pos_hint: {"center_x": .5}
+        text: 'Select a role'
+        on_release: root.role_menu.open()
+
+<PageUsers>:
+    name: "screen_users"
+    table_layout: table_layout
+    menu_toolbar: menu_toolbar
+
+    FitImage:
+        source: "assets/images/bg-01.png"
+        opacity: .5
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        CustomToolbar:
+            id: menu_toolbar
+            elevation: 2
+            pos_hint: {"top": 1}
+        
+        AnchorLayout:
+            id: table_layout
+            

@@ -1,0 +1,23 @@
+#:import PageDashbord pages.page_dashboard.dashboard
+
+<PageDashbord>:
+    name: "screen_dashboard"
+    
+    FitImage:
+        source: "assets/images/bg-01.png"
+        opacity: .8
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: app.app_title
+            elevation: 10
+            left_action_items: [['menu', lambda x: root.parent.parent.parent.ids.nav_drawer.set_state('toggle')]]
+        
+        MDLabel:
+            text: "Dashboard Screen"
+            font_style: "Caption"
+            text_size: self.size
+            halign: "center"
+            valign: "middle"

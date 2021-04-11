@@ -1,0 +1,82 @@
+#:import PageLogin pages.page_login.login
+
+<WhiteLabel@MDLabel>
+    size_hint_y: None
+    height: self.texture_size[1]
+    theme_text_color: "Custom"
+    text_color: 1,1,1,1
+
+<WhiteTextField@MDTextField>
+    size_hint: .8, None
+    pos_hint: {"center_x": .5}           
+    write_tab: False
+    multiline: False
+    color_mode: 'custom'
+    line_color_focus: 0, 1, 1, 1
+    line_color_normal: 1, 1, 1, 1
+    icon_right_color: 1, 1, 1, 1
+
+<PageLogin>:
+
+    name: "screen_login"
+    submit: submit_button
+
+    FitImage:
+        source: "assets/images/bg-01.png"
+
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: self.minimum_height
+        size_hint_x: .5
+        pos_hint: {"center_x":.5, "center_y":.5}
+        padding: "24dp", "24dp","24dp","32dp"
+        spacing: "12dp"
+
+        canvas:
+            Color: 
+                rgba: 1, 1, 1, .2
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [15]
+
+        WhiteLabel:
+            text:app.app_title
+            bold: True
+            halign: "center" 
+            font_style: "H4"
+
+        Widget:
+            size_hint_y:None
+            height: "4dp"
+
+        WhiteTextField:
+            id: username
+            icon_type: "right"
+            icon_right: "account"
+            hint_text: "Username"   
+            required: True
+
+        WhiteTextField:
+            id: password
+            icon_type: "right"
+            icon_right: "textbox-password"
+            hint_text: "Password"
+            required: True
+            password: True
+            next: submit_button
+
+        MDRaisedButton:
+            id: submit_button
+            text: "LOGIN"
+            bold: True
+            pos_hint: {"center_x": .5}
+            on_release: root.loggin_user()
+        
+        WhiteLabel:
+            id: errorText
+            text:''
+            bold: True
+            halign: "center" 
+            text_color: 1,0,0,1
