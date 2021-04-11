@@ -1,5 +1,4 @@
 # Python-KivyMD-With-Auth-Page-Based-Modules
-
 This project aims to show how to do it by using Python,KivyMD in a project with authentication. And also project is designed page based modules.
 In order to run the project, the following prerequisites must be installed.
 
